@@ -48,12 +48,12 @@ namespace Tema1_Dictionar.Windows
             imageBytes = File.ReadAllBytes(@"C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP\Tema1_Dictionar\Tema1_Dictionar\no_image.jpg");
         }
 
-        private void onCancel(object sender, RoutedEventArgs e)
+        private void OnCancel(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        private void onAdd(object sender, RoutedEventArgs e)
+        private void OnAdd(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -127,7 +127,7 @@ namespace Tema1_Dictionar.Windows
 
         }
 
-        private void onImageAdd(object sender, RoutedEventArgs e)
+        private void OnImageAdd(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png, *.bmp)|*.jpg;*.jpeg;*.png;*.bmp|All files (*.*)|*.*";

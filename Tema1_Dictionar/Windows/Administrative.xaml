@@ -87,13 +87,13 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="180">
-            <Button Content="Add" Margin="10,10,200,10" Width="85" Height="40" Style="{StaticResource DarkGreenButtonStyle}" Click="onAdd" />
-            <Button x:Name="DeleteBtn" Content="Delete" Margin="10"  Width="85" Height="40" Style="{StaticResource BlockedButtonStyle}"  IsEnabled="False" Click="onDelete" />
-            <Button x:Name="EditBtn" Content="Edit" Margin="200,10,10,10"  Width="85" Height="40" Style="{StaticResource BlockedButtonStyle}" IsEnabled="False" Click="onEdit" />
+            <Button Content="Add" Margin="10,10,200,10" Width="85" Height="40" Style="{StaticResource DarkGreenButtonStyle}" Click="OnAdd" />
+            <Button x:Name="DeleteBtn" Content="Delete" Margin="10"  Width="85" Height="40" Style="{StaticResource BlockedButtonStyle}"  IsEnabled="False" Click="OnDelete" />
+            <Button x:Name="EditBtn" Content="Edit" Margin="200,10,10,10"  Width="85" Height="40" Style="{StaticResource BlockedButtonStyle}" IsEnabled="False" Click="OnEdit" />
         </StackPanel>
 
 
-        <DataGrid x:Name="WordGrid" Grid.Row="1" Margin="10" ItemsSource="{Binding DictionaryWords}" AutoGenerateColumns="False" HorizontalAlignment="Center" SelectionChanged="onRowSelected" >
+        <DataGrid x:Name="WordGrid" Grid.Row="1" Margin="10" ItemsSource="{Binding DictionaryWords}" AutoGenerateColumns="False" HorizontalAlignment="Center" SelectionChanged="OnRowSelected" >
             <DataGrid.Resources>
                 <Style TargetType="DataGrid">
                     <Setter Property="FontSize" Value="30"/>

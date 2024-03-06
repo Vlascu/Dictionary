@@ -38,14 +38,14 @@ namespace Tema1_Dictionar.Windows
 
         }
 
-        private void onAdd(object sender, RoutedEventArgs e)
+        private void OnAdd(object sender, RoutedEventArgs e)
         {
             AddWindow addWindow = new AddWindow(this.DataContext);
             addWindow.ShowDialog();
            
         }
 
-        private void onRowSelected(object sender, SelectionChangedEventArgs e)
+        private void OnRowSelected(object sender, SelectionChangedEventArgs e)
         {
 
             DeleteBtn.IsEnabled = true;
@@ -74,7 +74,7 @@ namespace Tema1_Dictionar.Windows
             EditBtn.Style = (Style)FindResource("BlockedButtonStyle");
         }
 
-        private void onDelete(object sender, RoutedEventArgs e)
+        private void OnDelete(object sender, RoutedEventArgs e)
         {
             var wordList = (this.DataContext as DictionaryWordList).DictionaryWords;
             var existingWord = wordList.FirstOrDefault(word => word.Name == selectedWord.Name
@@ -94,7 +94,7 @@ namespace Tema1_Dictionar.Windows
             }
         }
 
-        private void onEdit(object sender, RoutedEventArgs e)
+        private void OnEdit(object sender, RoutedEventArgs e)
         {
             ResetGridAndButtons();
 
