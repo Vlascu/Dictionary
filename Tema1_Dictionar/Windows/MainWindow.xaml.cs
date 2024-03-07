@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Tema1_Dictionar.Windows;
 
 namespace Tema1_Dictionar
 {
@@ -30,6 +31,13 @@ namespace Tema1_Dictionar
             AuthWindow authWindow = new AuthWindow();
             this.Close();
             authWindow.ShowDialog();
+        }
+
+        private void OnSearch(object sender, RoutedEventArgs e)
+        {
+            SearchWindow searchWindow = new SearchWindow();
+            this.Close();
+            searchWindow.ShowDialog();
         }
     }
 }

@@ -18,6 +18,8 @@ namespace Tema1_Dictionar.Windows
     /// <summary>
     /// Interaction logic for Administrative.xaml
     /// </summary>
+    /// 
+    //TODO: make validation for inputs, so numbers can't be wrote
     public partial class Administrative : Window
     {
         private DictionaryWord selectedWord;
@@ -25,7 +27,7 @@ namespace Tema1_Dictionar.Windows
         {
             InitializeComponent();
             selectedWord = null;
-            List<DictionaryWord> words = JsonPersitence.LoadFromJson<DictionaryWord>(@"C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP\Tema1_Dictionar\Tema1_Dictionar\JsonFiles\dictionary.json");
+            List<DictionaryWord> words = JsonPersitence.LoadFromJson<DictionaryWord>(@"C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP\Dictionary\Tema1_Dictionar\JsonFiles\dictionary.json");
             var dataContextList = (DataContext as DictionaryWordList).DictionaryWords;
 
             if (words != null && words.Count > 0)
@@ -87,7 +89,7 @@ namespace Tema1_Dictionar.Windows
 
                 List<DictionaryWord> dictionaryWords = wordList.ToList();
 
-                JsonPersitence.SaveToJson(dictionaryWords, @"C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP\Tema1_Dictionar\Tema1_Dictionar\JsonFiles\dictionary.json");
+                JsonPersitence.SaveToJson(dictionaryWords, @"C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP\Dictionary\Tema1_Dictionar\JsonFiles\dictionary.json");
                 MessageBox.Show("Word Deleted!");
 
                 ResetGridAndButtons();
@@ -100,6 +102,13 @@ namespace Tema1_Dictionar.Windows
 
             AddWindow addWindow = new AddWindow(selectedWord, this.DataContext);
             addWindow.ShowDialog();
+        }
+
+        private void OnGoBack(object sender, RoutedEventArgs e)
+        {
+            MainWindow window = new MainWindow();
+            this.Close();
+            window.ShowDialog();
         }
     }
 }

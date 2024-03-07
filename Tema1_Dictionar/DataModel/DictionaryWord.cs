@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using Tema1_Dictionar.Exceptions;
 
 namespace Tema1_Dictionar.DataModel
@@ -16,6 +17,7 @@ namespace Tema1_Dictionar.DataModel
         private string base64Image;
 
         public event PropertyChangedEventHandler PropertyChanged;
+
 
         public DictionaryWord(string name, string description, string category)
         {

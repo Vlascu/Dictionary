@@ -88,8 +88,9 @@
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="180">
             <Button Content="Add" Margin="10,10,200,10" Width="85" Height="40" Style="{StaticResource DarkGreenButtonStyle}" Click="OnAdd" />
-            <Button x:Name="DeleteBtn" Content="Delete" Margin="10"  Width="85" Height="40" Style="{StaticResource BlockedButtonStyle}"  IsEnabled="False" Click="OnDelete" />
-            <Button x:Name="EditBtn" Content="Edit" Margin="200,10,10,10"  Width="85" Height="40" Style="{StaticResource BlockedButtonStyle}" IsEnabled="False" Click="OnEdit" />
+            <Button x:Name="DeleteBtn" Content="Delete" Margin="10,10,200,10"  Width="85" Height="40" Style="{StaticResource BlockedButtonStyle}"  IsEnabled="False" Click="OnDelete" />
+            <Button x:Name="EditBtn" Content="Edit" Margin="10,10,200,10"  Width="85" Height="40" Style="{StaticResource BlockedButtonStyle}" IsEnabled="False" Click="OnEdit" />
+            <Button x:Name="BackBtn" Content="Go Back" Width="85" Height="40" Style="{StaticResource DarkGreenButtonStyle}" Click="OnGoBack" />
         </StackPanel>
 
 

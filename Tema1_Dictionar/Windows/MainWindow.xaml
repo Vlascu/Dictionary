@@ -40,7 +40,7 @@
                 <Button Content="Administrative" Margin="20" Width="300" Height="60" Style="{StaticResource DarkGreenButtonStyle}" Click="onAdministriveClick"/>
 
 
-                <Button Content="Search" Margin="5" Width="300" Height="60" Style="{StaticResource DarkGreenButtonStyle}"/>
+                <Button Content="Search" Margin="5" Width="300" Height="60" Style="{StaticResource DarkGreenButtonStyle}" Click="OnSearch" />
 
 
                 <Button Content="Game" Margin="20" Width="300" Height="60" Style="{StaticResource DarkGreenButtonStyle}"/>

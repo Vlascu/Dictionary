@@ -35,7 +35,7 @@ namespace Tema1_Dictionar.Windows
             InitializeComponent();
             GetCategories();
             DataContext = dContext;
-            imageBytes = File.ReadAllBytes(@"C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP\Tema1_Dictionar\Tema1_Dictionar\no_image.jpg");
+            imageBytes = File.ReadAllBytes(@"C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP\Dictionary\Tema1_Dictionar\no_image.jpg");
         }
 
         public AddWindow(DictionaryWord selectedWord, object dContext)
@@ -45,7 +45,7 @@ namespace Tema1_Dictionar.Windows
             this.isChangingData = true;
             this.selectedWord = selectedWord;
             DataContext = dContext;
-            imageBytes = File.ReadAllBytes(@"C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP\Tema1_Dictionar\Tema1_Dictionar\no_image.jpg");
+            imageBytes = File.ReadAllBytes(@"C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP\Dictionary\Tema1_Dictionar\no_image.jpg");
         }
 
         private void OnCancel(object sender, RoutedEventArgs e)
@@ -63,20 +63,25 @@ namespace Tema1_Dictionar.Windows
                 }
                 else
                 {
+
+                    if(currentCategory == null)
+                    {
+                        currentCategory = CategoryInput.Text;
+                    }
+
                     if (!isChangingData)
                     {
-
 
                         DictionaryWord word = new DictionaryWord()
                         {
                             Name = WordNameInput.Text,
                             Description = DescriptionInput.Text,
-                            Category = CategoryInput.Text,
+                            Category = currentCategory,
                             Base64Image = imageBytes
                         };
                         (DataContext as DictionaryWordList).DictionaryWords.Add(word);
 
-                        JsonPersitence.SaveToJson(word, @"C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP\Tema1_Dictionar\Tema1_Dictionar\JsonFiles\dictionary.json");
+                        JsonPersitence.SaveToJson(word, @"C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP\Dictionary\Tema1_Dictionar\JsonFiles\dictionary.json");
                         MessageBox.Show("Word Added!");
 
                         this.Close();
@@ -97,13 +102,13 @@ namespace Tema1_Dictionar.Windows
                             {
                                 Name = WordNameInput.Text,
                                 Description = DescriptionInput.Text,
-                                Category = CategoryInput.Text,
+                                Category = currentCategory,
                                 Base64Image = imageBytes
                             });
 
                             List<DictionaryWord> dictionaryWords = wordList.ToList();
 
-                            JsonPersitence.SaveToJson(dictionaryWords, @"C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP\Tema1_Dictionar\Tema1_Dictionar\JsonFiles\dictionary.json");
+                            JsonPersitence.SaveToJson(dictionaryWords, @"C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP\Dictionary\Tema1_Dictionar\JsonFiles\dictionary.json");
                             MessageBox.Show("Word Updated!");
 
                             this.Close();
@@ -145,7 +150,7 @@ namespace Tema1_Dictionar.Windows
         {
             categories = new ObservableCollection<string>();
 
-            List<DictionaryWord> dictionaryWords = JsonPersitence.LoadFromJson<DictionaryWord>(@"C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP\Tema1_Dictionar\Tema1_Dictionar\JsonFiles\dictionary.json");
+            List<DictionaryWord> dictionaryWords = JsonPersitence.LoadFromJson<DictionaryWord>(@"C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP\Dictionary\Tema1_Dictionar\JsonFiles\dictionary.json");
 
             foreach (DictionaryWord dictionaryWord in dictionaryWords)
             {
@@ -171,6 +176,7 @@ namespace Tema1_Dictionar.Windows
         {
             if (CategoriesDropdown.SelectedItem != null)
             {
+                CategoryInput.Clear();
                 currentCategory = CategoriesDropdown.SelectedItem as string;
             }
         }
