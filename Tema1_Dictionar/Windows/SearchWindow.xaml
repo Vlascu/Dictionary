@@ -13,8 +13,7 @@
     </Window.DataContext>
 
     <Window.Resources>
-        <local:CategoryConverter x:Key="CategoryConverter"/>
-        <CollectionViewSource x:Key="WordsView" Source="{Binding DictionaryWords, Converter={StaticResource CategoryConverter} }"/>
+        <CollectionViewSource x:Key="WordsView" Source="{Binding DictionaryWords}"/>
         <Style x:Key="DarkGreenButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#006400"/>
             <Setter Property="Foreground" Value="White"/>
@@ -77,7 +76,8 @@
                 <StackPanel Orientation="Vertical" Margin="0,0,0,10" HorizontalAlignment="Center" >
                     <Label Content="Search:" Width="100" VerticalAlignment="Center" FontSize="16" HorizontalContentAlignment="Center"/>
                     <ComboBox Name="WordSearch" Width="500" Height="30" IsEditable="True" TextBoxBase.TextChanged="OnLetterEntered"
-                              ItemsSource="{Binding Source={StaticResource WordsView}}"/>
+                              ItemsSource="{Binding Source={StaticResource WordsView}}" DisplayMemberPath="Name" SelectedValuePath="Name"
+                              SelectedValue="{Binding DictionaryWord}" IsTextSearchEnabled="False" />
                 </StackPanel>
 
                 <Label Content="" Name="ErrorsLabel" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center"

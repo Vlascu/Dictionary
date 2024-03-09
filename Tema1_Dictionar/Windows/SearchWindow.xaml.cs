@@ -38,9 +38,9 @@ namespace Tema1_Dictionar.Windows
             categories = GetCategories();
             InsertCategoriesComboBox();
 
-            if (Resources["WordView"] is CollectionViewSource collectionViewSource)
+            if (Resources["WordsView"] is CollectionViewSource collectionViewSource)
             {
-                collectionViewSource.Filter += FilterCategory;
+                collectionViewSource.Filter += FilterWords;
             }
         }
 
@@ -72,12 +72,24 @@ namespace Tema1_Dictionar.Windows
             if (CategoryCombo.SelectedItem != null)
             {
                 currentCategory = (string)CategoryCombo.SelectedItem;
+                RefreshFilter();
             }
         }
 
         private void OnLetterEntered(object sender, RoutedEventArgs e)
         {
-            currentSubstring = WordSearch.Text;
+            ComboBox comboBox = sender as ComboBox;
+            comboBox.IsDropDownOpen = true;
+
+            if (comboBox != null)
+            {
+                TextBox textBox = comboBox.Template.FindName("PART_EditableTextBox", comboBox) as TextBox;
+                if (textBox != null)
+                {
+                    currentSubstring = textBox.Text;
+                    RefreshFilter();
+                }
+            }
         }
 
         private void GetAllWords()
@@ -89,19 +101,32 @@ namespace Tema1_Dictionar.Windows
             }
 
         }
-        private void FilterCategory(object sender, FilterEventArgs e)
+
+        private void FilterWords(object sender, FilterEventArgs e)
         {
             if (e.Item is DictionaryWord word)
             {
+                bool accepted = true;
+
                 if (currentSubstring != null)
                 {
-                    e.Accepted = word.Category.Contains(currentSubstring);
+                    accepted = word.Name.Contains(currentSubstring);
                 }
-                if (currentCategory != null && currentSubstring != null)
+
+                if (currentCategory != null && currentCategory != "" && word.Category != currentCategory)
                 {
-                    e.Accepted = word.Category == currentCategory;
-                    e.Accepted = word.Category.Contains(currentSubstring);
+                    accepted = false;
                 }
+
+                e.Accepted = accepted;
+            }
+        }
+
+        private void RefreshFilter()
+        {
+            if (Resources["WordsView"] is CollectionViewSource collectionViewSource)
+            {
+                collectionViewSource.View.Refresh();
             }
         }
     }
