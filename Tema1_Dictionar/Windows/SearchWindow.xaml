@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="SearchWindow"
         WindowState="Maximized"
-        Style="{StaticResource WindowGradientBackground}">
+        Style="{StaticResource WindowGradientBackground}"
+        >
     <Window.DataContext>
         <local:DictionaryWordList/>
     </Window.DataContext>
@@ -77,14 +78,14 @@
                     <Label Content="Search:" Width="100" VerticalAlignment="Center" FontSize="16" HorizontalContentAlignment="Center"/>
                     <ComboBox Name="WordSearch" Width="500" Height="30" IsEditable="True" TextBoxBase.TextChanged="OnLetterEntered"
                               ItemsSource="{Binding Source={StaticResource WordsView}}" DisplayMemberPath="Name" SelectedValuePath="Name"
-                              SelectedValue="{Binding DictionaryWord}" IsTextSearchEnabled="False" />
+                              SelectedValue="{Binding DictionaryWord}" IsTextSearchEnabled="False" SelectionChanged="OnWordSelected" />
                 </StackPanel>
 
                 <Label Content="" Name="ErrorsLabel" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center"
                    Style="{StaticResource ErrorMessageStyle}"/>
 
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                    <Button Content="Search" Margin="20,10,20,10" Width="200" Height="40" Style="{StaticResource DarkGreenButtonStyle}" />
+                    <Button Content="Search" Margin="20,10,20,10" Width="200" Height="40" Style="{StaticResource DarkGreenButtonStyle}" Click="OnSearch" />
                     <Button Content="Back" Margin="20,0,20,20" Width="100" Height="40" Style="{StaticResource GoBackButtonStyle}" Click="OnGoBack"/>
                 </StackPanel>
                              

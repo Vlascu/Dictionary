@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Tema1_Dictionar.DataModel;
+using Tema1_Dictionar.Exceptions;
 
 namespace Tema1_Dictionar.Windows
 {
@@ -110,7 +111,7 @@ namespace Tema1_Dictionar.Windows
 
                 if (currentSubstring != null)
                 {
-                    accepted = word.Name.Contains(currentSubstring);
+                    accepted = word.Name.StartsWith(currentSubstring, StringComparison.OrdinalIgnoreCase);
                 }
 
                 if (currentCategory != null && currentCategory != "" && word.Category != currentCategory)
@@ -127,6 +128,35 @@ namespace Tema1_Dictionar.Windows
             if (Resources["WordsView"] is CollectionViewSource collectionViewSource)
             {
                 collectionViewSource.View.Refresh();
+            }
+        }
+
+        private void OnWordSelected(object sender, SelectionChangedEventArgs e)
+        {
+            if (WordSearch.SelectedItem != null)
+            {
+                DictionaryWord word = (DictionaryWord)WordSearch.SelectedItem;
+                string currentWordName = word.Name;
+                searchedWord = GetSelectedWord(currentWordName);
+            }
+        }
+
+        private DictionaryWord GetSelectedWord(string wordName)
+        {
+            return (DataContext as DictionaryWordList).DictionaryWords.FirstOrDefault(w => w.Name == wordName);
+        }
+
+        private void OnSearch(object sender, RoutedEventArgs e)
+        {
+            if(searchedWord != null)
+            {
+                WordWindow wordWindow = new WordWindow(searchedWord);
+                this.Close();
+                wordWindow.ShowDialog();
+
+            } else
+            {
+                ErrorsLabel.Content = "Word is not selected!";
             }
         }
     }

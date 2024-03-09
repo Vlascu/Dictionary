@@ -72,13 +72,9 @@ namespace Tema1_Dictionar.DataModel
         public byte[] Base64Image
         {
             get { return Convert.FromBase64String(this.base64Image); }
-            set { this.base64Image = EncodeImage(value); }
+            set { this.base64Image = Convert.ToBase64String(value); }
         }
 
-        private string EncodeImage(byte[] imageBytes)
-        {
-            return Convert.ToBase64String(imageBytes);
-        }
         protected void NotifyPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
