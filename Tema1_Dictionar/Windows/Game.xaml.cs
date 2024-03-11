@@ -24,6 +24,7 @@ namespace Tema1_Dictionar.Windows
         private readonly static int ROUNDS_NUMBER = 5;
         private List<DictionaryWord> choosenWords = new List<DictionaryWord>();
         private Random random;
+        private int currentRound = 0;
         private readonly static int DESCRIPTION_OR_IMAGE_RANDOM = 2;
         private readonly static int DESCRIPTION_INDEX = 0;
         private readonly static int IMAGE_INDEX = 1;
@@ -35,8 +36,45 @@ namespace Tema1_Dictionar.Windows
             random = new Random(DateTime.Now.Millisecond);
             GetWords();
             AddWordsInGames();
+            InitRound();
+        }
+        private void InitRound()
+        {
+            currentRound++;
 
-            InitRound()
+            GameModel currentGame = games[currentRound - 1];
+
+            RoundLabel.Content = "Round: " + currentGame.RoundNumber;
+
+            if (currentGame.WordDescription != null)
+            {
+                Description.Visibility = Visibility.Visible;
+                Image.Visibility = Visibility.Hidden;
+
+                Description.Content = currentGame.WordDescription;
+            }
+            else
+            {
+                Description.Visibility = Visibility.Hidden;
+                Image.Visibility = Visibility.Visible;
+
+                Image.Source = GetBitmapImage(Convert.FromBase64String(currentGame.Image));
+            }
+
+            if(currentRound == 1)
+            {
+                PreviousBtn.Style = (Style)FindResource("BlockedButtonStyle");
+                PreviousBtn.IsEnabled = false;
+            }
+        }
+        private BitmapImage GetBitmapImage(byte[] bytes)
+        {
+            BitmapImage bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.StreamSource = new System.IO.MemoryStream(bytes);
+            bitmapImage.EndInit();
+
+            return bitmapImage;
         }
         private int GenerateRandomIndex(int max)
         {
@@ -58,7 +96,7 @@ namespace Tema1_Dictionar.Windows
             int roundIndex = 1;
             foreach (DictionaryWord word in choosenWords)
             {
-                if (word.Base64Image == Convert.FromBase64String(DEFAULT_IMAGE))
+                if (Convert.ToBase64String(word.Base64Image) == DEFAULT_IMAGE)
                 {
                     games.Add(new GameModel(roundIndex, word.Name, word.Description, null));
                 }
@@ -77,6 +115,14 @@ namespace Tema1_Dictionar.Windows
                 }
                 roundIndex++;
             }
+        }
+
+        private void OnExit(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            this.Close();
+            mainWindow.ShowDialog();
+
         }
     }
 }
