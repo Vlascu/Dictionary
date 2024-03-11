@@ -39,5 +39,12 @@ namespace Tema1_Dictionar
             this.Close();
             searchWindow.ShowDialog();
         }
+
+        private void OnGame(object sender, RoutedEventArgs e)
+        {
+            Game game = new Game();
+            this.Close();
+            game.ShowDialog();
+        }
     }
 }
