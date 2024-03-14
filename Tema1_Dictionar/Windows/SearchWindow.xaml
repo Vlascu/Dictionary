@@ -16,7 +16,7 @@
     <Window.Resources>
         <CollectionViewSource x:Key="WordsView" Source="{Binding DictionaryWords}"/>
         <Style x:Key="DarkGreenButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="#006400"/>
+            <Setter Property="Background" Value="#bf3600"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Padding" Value="10"/>
@@ -33,7 +33,7 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="LightGreen"/>
+                    <Setter Property="Background" Value="#ffa582"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -41,7 +41,7 @@
             <Setter Property="Foreground" Value="Red"/>
         </Style>
         <Style x:Key="GoBackButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="#003000"/>
+            <Setter Property="Background" Value="#702102"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Padding" Value="10"/>
@@ -58,7 +58,7 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="LightGreen"/>
+                    <Setter Property="Background" Value="#ffa582"/>
                 </Trigger>
             </Style.Triggers>
         </Style>

@@ -28,7 +28,7 @@
 
         </Style>
         <Style x:Key="DarkGreenButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="#006400"/>
+            <Setter Property="Background" Value="#bf3600"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Padding" Value="10"/>
@@ -45,7 +45,7 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="LightGreen"/>
+                    <Setter Property="Background" Value="#ffa582"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -91,8 +91,8 @@
                     <StackPanel Grid.Row="0" Grid.Column="0" Height="300">
                         <Label Name="RoundLabel" Content="Round: " FontSize="15" Margin="15,10,0,0"/>
                         <Label Content="Guess word: " FontSize="15" Margin="15,80,0,0"/>
-                        <TextBlock x:Name="WordInput" Height="25" Margin="15,0,0,0"/>
-                        <Button x:Name="Guess" Height="40" Width="100" Content="Guess" FontSize="17" Margin="0,40,0,0" Style="{StaticResource DarkGreenButtonStyle}"/>
+                        <TextBox Name="WordInput" Height="25" Margin="15,0,0,0" Width="320" IsEnabled="True"/>
+                        <Button x:Name="Guess" Height="40" Width="100" Content="Guess" FontSize="17" Margin="0,40,0,0" Style="{StaticResource DarkGreenButtonStyle }" Click="OnGuess"/>
                     </StackPanel>
 
                     
@@ -102,7 +102,7 @@
                         <Grid>
                             <Label Name="Description" Content="Description" Height="220" FontSize="16" Visibility="Visible"/>
                             <Image Name ="Image" Width="180" Height="180" Panel.ZIndex="1" Visibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                   Margin="0,0,180,90"/>
+                                   Margin="0,0,100,90"/>
                         </Grid>
 
                     </StackPanel>
@@ -116,8 +116,8 @@
            Margin="20,0,0,0" Click="OnExit" />
                                 <Button Name="PreviousBtn" Content="Previous" Height="40" Width="100" Style="{StaticResource DarkGreenButtonStyle}"
            Margin="180,0,0,0"/>
-                                <Button Content="Next" Height="40" Width="100" Style="{StaticResource DarkGreenButtonStyle}"
-            Margin="180,0,0,0"/>
+                                <Button Name="NextBtn" Content="Next" Height="40" Width="100" Style="{StaticResource DarkGreenButtonStyle }"
+            Margin="180,0,0,0" Click="OnNextRound"/>
                             </StackPanel>
                         </StackPanel>
                         

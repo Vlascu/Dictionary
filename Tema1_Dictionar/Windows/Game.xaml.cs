@@ -25,6 +25,9 @@ namespace Tema1_Dictionar.Windows
         private List<DictionaryWord> choosenWords = new List<DictionaryWord>();
         private Random random;
         private int currentRound = 0;
+        private int guesses = 0;
+        private string currentWordName = null;
+        private int numberOfTries;
         private readonly static int DESCRIPTION_OR_IMAGE_RANDOM = 2;
         private readonly static int DESCRIPTION_INDEX = 0;
         private readonly static int IMAGE_INDEX = 1;
@@ -40,9 +43,13 @@ namespace Tema1_Dictionar.Windows
         }
         private void InitRound()
         {
+            numberOfTries = 3;
+
             currentRound++;
 
             GameModel currentGame = games[currentRound - 1];
+
+            currentWordName = currentGame.WordName;
 
             RoundLabel.Content = "Round: " + currentGame.RoundNumber;
 
@@ -61,10 +68,15 @@ namespace Tema1_Dictionar.Windows
                 Image.Source = GetBitmapImage(Convert.FromBase64String(currentGame.Image));
             }
 
-            if(currentRound == 1)
+            if (currentRound == 1)
             {
                 PreviousBtn.Style = (Style)FindResource("BlockedButtonStyle");
                 PreviousBtn.IsEnabled = false;
+            }
+
+            if (currentRound == 5)
+            {
+                NextBtn.Content = "Finish";
             }
         }
         private BitmapImage GetBitmapImage(byte[] bytes)
@@ -123,6 +135,38 @@ namespace Tema1_Dictionar.Windows
             this.Close();
             mainWindow.ShowDialog();
 
+        }
+
+        private void OnNextRound(object sender, RoutedEventArgs e)
+        {
+            if (currentRound != 5)
+            {
+                InitRound();
+
+            }
+            else
+            {
+                MessageBox.Show("You've guessed " + guesses + " words!");
+                currentRound = 0;
+                NextBtn.Content = "Next";
+                InitRound();
+            }
+        }
+
+        private void OnGuess(object sender, RoutedEventArgs e)
+        {
+            if (WordInput.Text != currentWordName)
+            {
+                numberOfTries--;
+
+                MessageBox.Show("Incorrect guess! You have left " + numberOfTries + " tries.");
+            }
+            else
+            {
+                MessageBox.Show("Correct guess!");
+                guesses++;
+                InitRound();
+            }
         }
     }
 }

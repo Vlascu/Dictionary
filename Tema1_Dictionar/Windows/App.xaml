@@ -7,7 +7,7 @@
         <ResourceDictionary>
             <LinearGradientBrush x:Key="BackgroundBrush" StartPoint="0,0" EndPoint="0,1">
                 <GradientStop Color="White" Offset="0"/>
-                <GradientStop Color="#004f24" Offset="1"/>
+                <GradientStop Color="#ff4800" Offset="1"/>
             </LinearGradientBrush>
 
             <Style TargetType="Window" x:Key="WindowGradientBackground">
