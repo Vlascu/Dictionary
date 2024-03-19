@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Tema1_Dictionar.DataModel;
 using Tema1_Dictionar.Exceptions;
+using Tema1_Dictionar.Persistence;
 
 namespace Tema1_Dictionar.Windows
 {
@@ -54,7 +55,7 @@ namespace Tema1_Dictionar.Windows
 
         private List<string> GetCategories()
         {
-            List<DictionaryWord> dictionaryWords = JsonPersitence.LoadFromJson<DictionaryWord>(@"C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP\Dictionary\Tema1_Dictionar\JsonFiles\dictionary.json");
+            List<DictionaryWord> dictionaryWords = JsonPersitence.LoadFromJson<DictionaryWord>(FilesPathHolder.GetDictionaryPath());
 
             return dictionaryWords.Select(word => word.Category).Distinct().ToList();
 
@@ -95,7 +96,7 @@ namespace Tema1_Dictionar.Windows
 
         private void GetAllWords()
         {
-            var words = JsonPersitence.LoadFromJson<DictionaryWord>(@"C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP\Dictionary\Tema1_Dictionar\JsonFiles\dictionary.json");
+            var words = JsonPersitence.LoadFromJson<DictionaryWord>(FilesPathHolder.GetDictionaryPath());
             foreach (var word in words)
             {
                 (DataContext as DictionaryWordList).DictionaryWords.Add(word);

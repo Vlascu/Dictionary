@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Tema1_Dictionar.DataModel;
+using Tema1_Dictionar.Persistence;
 
 namespace Tema1_Dictionar.Windows
 {
@@ -98,7 +99,7 @@ namespace Tema1_Dictionar.Windows
 
         private void GetWords()
         {
-            List<DictionaryWord> words = JsonPersitence.LoadFromJson<DictionaryWord>(@"C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP\Dictionary\Tema1_Dictionar\JsonFiles\dictionary.json");
+            List<DictionaryWord> words = JsonPersitence.LoadFromJson<DictionaryWord>(FilesPathHolder.GetDictionaryPath());
 
             for (int index = 0; index < ROUNDS_NUMBER; index++)
             {

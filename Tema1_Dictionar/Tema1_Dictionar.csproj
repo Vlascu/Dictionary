@@ -74,6 +74,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DataModel\GameModel.cs" />
+    <Compile Include="Persistence\FilesPathHolder.cs" />
     <Compile Include="Windows\Game.xaml.cs">
       <DependentUpon>Game.xaml</DependentUpon>
     </Compile>

@@ -16,6 +16,7 @@ using System.IO;
 using Tema1_Dictionar.DataModel;
 using Tema1_Dictionar.Exceptions;
 using System.Collections.ObjectModel;
+using Tema1_Dictionar.Persistence;
 
 namespace Tema1_Dictionar.Windows
 {
@@ -81,7 +82,7 @@ namespace Tema1_Dictionar.Windows
                         };
                         (DataContext as DictionaryWordList).DictionaryWords.Add(word);
 
-                        JsonPersitence.SaveToJson(word, @"C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP\Dictionary\Tema1_Dictionar\JsonFiles\dictionary.json");
+                        JsonPersitence.SaveToJson(word, FilesPathHolder.GetDictionaryPath());
                         MessageBox.Show("Word Added!");
 
                         this.Close();
@@ -108,7 +109,7 @@ namespace Tema1_Dictionar.Windows
 
                             List<DictionaryWord> dictionaryWords = wordList.ToList();
 
-                            JsonPersitence.SaveToJson(dictionaryWords, @"C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP\Dictionary\Tema1_Dictionar\JsonFiles\dictionary.json");
+                            JsonPersitence.SaveToJson(dictionaryWords, FilesPathHolder.GetDictionaryPath());
                             MessageBox.Show("Word Updated!");
 
                             this.Close();
@@ -153,7 +154,7 @@ namespace Tema1_Dictionar.Windows
         {
             categories = new ObservableCollection<string>();
 
-            List<DictionaryWord> dictionaryWords = JsonPersitence.LoadFromJson<DictionaryWord>(@"C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP\Dictionary\Tema1_Dictionar\JsonFiles\dictionary.json");
+            List<DictionaryWord> dictionaryWords = JsonPersitence.LoadFromJson<DictionaryWord>(FilesPathHolder.GetDictionaryPath());
 
             foreach (DictionaryWord dictionaryWord in dictionaryWords)
             {

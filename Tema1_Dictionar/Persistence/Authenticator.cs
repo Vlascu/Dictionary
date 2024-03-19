@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Tema1_Dictionar.Exceptions;
+using Tema1_Dictionar.Persistence;
 
 namespace Tema1_Dictionar
 {
@@ -14,7 +15,7 @@ namespace Tema1_Dictionar
         {
             InputValidation(username, password);
 
-            List<Person> persons = JsonPersitence.LoadFromJson<Person>(@"C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP\Dictionary\Tema1_Dictionar\JsonFiles\persons.json");
+            List<Person> persons = JsonPersitence.LoadFromJson<Person>(FilesPathHolder.GetPersonsPath());
 
             if (persons != null)
             {
@@ -27,7 +28,7 @@ namespace Tema1_Dictionar
                 }
             }
 
-            JsonPersitence.SaveToJson<Person>(new Person(username, password), @"C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP\Dictionary\Tema1_Dictionar\JsonFiles\persons.json");
+            JsonPersitence.SaveToJson<Person>(new Person(username, password), FilesPathHolder.GetPersonsPath());
 
             MessageBox.Show("User registerd succesfully!");
         }
@@ -35,7 +36,7 @@ namespace Tema1_Dictionar
         {
             InputValidation(username,password);
 
-            List<Person> persons = JsonPersitence.LoadFromJson<Person>(@"C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP\Dictionary\Tema1_Dictionar\JsonFiles\persons.json");
+            List<Person> persons = JsonPersitence.LoadFromJson<Person>(FilesPathHolder.GetPersonsPath());
 
             if (persons != null)
             {
