@@ -136,7 +136,10 @@ namespace Tema1_Dictionar.Windows
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png, *.bmp)|*.jpg;*.jpeg;*.png;*.bmp|All files (*.*)|*.*";
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+
+            string initialDirectory = System.IO.Path.GetDirectoryName(@"C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP");
+
+            openFileDialog.InitialDirectory = initialDirectory;
 
             if (openFileDialog.ShowDialog() == true)
             {

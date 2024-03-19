@@ -100,7 +100,8 @@
                         <Label Content="Hint: " FontSize="16" Margin="0,10,0,0" HorizontalAlignment="Center"/>
 
                         <Grid>
-                            <Label Name="Description" Content="Description" Height="220" FontSize="16" Visibility="Visible"/>
+                            <TextBlock Name="Description" Height="Auto" FontSize="16" Visibility="Visible" Width="345" VerticalAlignment="Stretch"
+                                   TextWrapping="Wrap"/>
                             <Image Name ="Image" Width="180" Height="180" Panel.ZIndex="1" Visibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center"
                                    Margin="0,0,100,90"/>
                         </Grid>

@@ -34,6 +34,7 @@
 
     </Window.Resources>
     <Grid>
+        <Image Height="300" Width="800" Source ="C:\Users\Vlascu\Desktop\Cursuri UNITBV\ANUL 2\Sem 2\MAP\Logo.png" VerticalAlignment="Top" Margin="0,0,0,600"/>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Background="White" Margin="10">
 

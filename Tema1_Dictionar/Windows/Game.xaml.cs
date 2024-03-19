@@ -43,6 +43,9 @@ namespace Tema1_Dictionar.Windows
         }
         private void InitRound()
         {
+            Guess.Style = (Style)FindResource("DarkGreenButtonStyle");
+            Guess.IsEnabled = true;
+
             numberOfTries = 3;
 
             currentRound++;
@@ -58,7 +61,7 @@ namespace Tema1_Dictionar.Windows
                 Description.Visibility = Visibility.Visible;
                 Image.Visibility = Visibility.Hidden;
 
-                Description.Content = currentGame.WordDescription;
+                Description.Text = currentGame.WordDescription;
             }
             else
             {
@@ -142,13 +145,19 @@ namespace Tema1_Dictionar.Windows
             if (currentRound != 5)
             {
                 InitRound();
-
             }
             else
             {
                 MessageBox.Show("You've guessed " + guesses + " words!");
                 currentRound = 0;
                 NextBtn.Content = "Next";
+
+                games.Clear();
+                choosenWords.Clear();
+
+                GetWords();
+                AddWordsInGames();
+
                 InitRound();
             }
         }
@@ -157,15 +166,25 @@ namespace Tema1_Dictionar.Windows
         {
             if (WordInput.Text != currentWordName)
             {
+
                 numberOfTries--;
 
-                MessageBox.Show("Incorrect guess! You have left " + numberOfTries + " tries.");
+                MessageBox.Show("Incorrect guess! You have " + numberOfTries + " tries left.");
+
+                if(numberOfTries == 0)
+                {
+                    MessageBox.Show("No tries left!");
+                    InitRound();
+                }
+
             }
             else
             {
                 MessageBox.Show("Correct guess!");
                 guesses++;
-                InitRound();
+                
+                Guess.Style = (Style)FindResource("BlockedButtonStyle");
+                Guess.IsEnabled = false;
             }
         }
     }
